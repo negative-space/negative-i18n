@@ -1,9 +1,6 @@
 from django.conf import settings
-from django.urls import resolve, reverse
-
-from negative_i18n.trans_utils import translate_lazy
 from django.template import Library
-from django.template.defaultfilters import stringfilter
+from django.urls import resolve, reverse
 from django.utils.translation import activate, get_language
 
 register = Library()
