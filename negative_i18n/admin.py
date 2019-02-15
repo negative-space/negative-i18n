@@ -26,6 +26,12 @@ def get_model_ct(model):
     return "%s.%s" % get_model_ct_tuple(model)
 
 
+def get_trans_fields(languages):
+    fields = [f"translation_{lang_code}" for lang_code, lang in languages]
+
+    return tuple(fields)
+
+
 from django import forms
 
 
@@ -46,14 +52,17 @@ class UploadFileForm(forms.Form):
 
 
 class StringTranslationAdmin(admin.ModelAdmin):
-    list_display = ('key', 'last_used', 'translation')
-    list_editable = ('translation',)
+    list_display = ('key', 'translation',) + get_trans_fields(settings.LANGUAGES)
+    list_editable = get_trans_fields(settings.LANGUAGES)
     list_filter = ('context',)
-    search_fields = ('key', 'translation',)
 
     change_list_template = 'negative-i18n/i18n_change_list.html'
 
     actions = [delete_selected]
+
+
+    def get_list_display(self, request):
+        return ('key', 'last_used',) + get_trans_fields(settings.LANGUAGES)
 
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
