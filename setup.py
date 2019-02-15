@@ -55,7 +55,7 @@ def find_package_data(*allowed_extensions):
 
 setup(
     name='negative-i18n',
-    version='0.1.1',
+    version='0.1.3',
     description='Database-stored translation strings for Django',
     long_description=readme + '\n\n' + doclink + '\n\n' + history,
     author='Alex Rudakov',
@@ -63,6 +63,8 @@ setup(
     url='https://github.com/negative-space/negative-i18n',
     packages=[
         'negative_i18n',
+        'negative_i18n.migrations',
+        'negative_i18n.templatetags',
     ],
     package_data=find_package_data('js', 'css', 'html'),
     package_dir={'negative_i18n': 'negative_i18n'},
