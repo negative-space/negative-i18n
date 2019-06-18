@@ -2,7 +2,6 @@ import polib
 from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
-from django.contrib.admin.actions import delete_selected
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.utils.translation import get_language
@@ -57,8 +56,6 @@ class StringTranslationAdmin(admin.ModelAdmin):
     list_filter = ('context',)
 
     change_list_template = 'negative-i18n/i18n_change_list.html'
-
-    actions = [delete_selected]
 
 
     def get_list_display(self, request):
